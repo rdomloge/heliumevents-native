@@ -10,12 +10,13 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
 import org.joda.time.DateTime;
+import org.joda.time.Duration;
+import org.joda.time.format.PeriodFormatter;
+import org.joda.time.format.PeriodFormatterBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.micronaut.context.annotation.Value;
-import io.micronaut.http.HttpResponse;
-import io.micronaut.http.HttpStatus;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 
@@ -34,6 +35,19 @@ public class Trawler {
     String hotspot;
 
     private String hotspotName;
+
+    private long startTime = System.currentTimeMillis();
+
+    private PeriodFormatter formatter = new PeriodFormatterBuilder()
+                .appendHours()
+                .appendSuffix("h")
+                .appendMinutes()
+                .appendSuffix("m ")
+                .appendSeconds()
+                .appendSuffix("s ")
+                .appendMillis()
+                .appendSuffix("ms")
+                .toFormatter();
 
     @PostConstruct
     void prep() throws ElasticSearchApiException {
@@ -122,7 +136,10 @@ public class Trawler {
                 storeMetadata(hotspotName, dateCursor);
                 dateCursor = dateCursor.plusDays(1);
             }
-            logger.info("Synch complete");
+
+            Duration duration = new Duration(System.currentTimeMillis()-startTime);
+            String formatted = formatter.print(duration.toPeriod()); 
+            logger.info("Synch complete. Total time: {}", formatted);
         }
         catch(HeliumApiException hex) {
             handleError(hex);
