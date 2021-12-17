@@ -11,7 +11,7 @@ RUN wget --no-check-certificate https://dlcdn.apache.org/maven/maven-3/3.8.4/bin
 RUN tar xzf apache-maven-3.8.4-bin.tar.gz
 RUN ln -s apache-maven-3.8.4/bin/mvn mvn
 
-RUN ./mvn -Dmaven.wagon.http.ssl.insecure=true -Dpackaging=native-image package
+RUN ./mvn -Dmaven.wagon.http.ssl.insecure=true -Dpackaging=native-image -Dmaven.test.skip=true package
 
 FROM ubuntu:hirsute
 WORKDIR /
