@@ -1,0 +1,6 @@
+micronaut:
+  application:
+    name: heliumeventsNative
+    USE_HELIUM_API: true
+    USE_STAKEJOY_API: false
+logger.levels.io.micronaut.http.client: INFO
