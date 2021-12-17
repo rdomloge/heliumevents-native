@@ -79,6 +79,10 @@
       <artifactId>javax.annotation-api</artifactId>
       <scope>compile</scope>
     </dependency>
+    <!-- 
+         Seems daft, but the dependency below is only required during native code 
+         generation and solves a class not found error
+    -->
     <dependency>
       <groupId>javax.inject</groupId>
       <artifactId>javax.inject</artifactId>
