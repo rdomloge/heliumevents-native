@@ -35,7 +35,7 @@ public class ElasticSearchApi {
     private String BASE;
 
     @PostConstruct
-    public void setup(@Value("${micronaut.application.ES_SERVER_ADDRESS}") String base_url) {
+    public void setup(@Value("${ES_SERVER_ADDRESS}") String base_url) {
         logger.info("Using ElasticSearch at {}", base_url);
         BASE = base_url;
     }

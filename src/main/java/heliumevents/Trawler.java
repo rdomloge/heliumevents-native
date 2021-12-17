@@ -30,7 +30,7 @@ public class Trawler {
     @Inject
     private ElasticSearchApi esApi;
 
-    @Value("${micronaut.application.HOTSPOT}")
+    @Value("${HOTSPOT}")
     String hotspot;
 
     private String hotspotName;
