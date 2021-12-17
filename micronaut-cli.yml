@@ -1,0 +1,6 @@
+applicationType: cli
+defaultPackage: heliumevents
+testFramework: junit
+sourceLanguage: java
+buildTool: maven
+features: [annotation-api, app-name, http-client, java, junit, logback, maven, picocli, picocli-java-application, picocli-junit, readme, security, security-annotations, shade, yaml]
